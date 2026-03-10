@@ -33,13 +33,7 @@ export class TerminalManager {
 	createTerminal(params: acp.CreateTerminalRequest): string {
 		const terminalId = crypto.randomUUID();
 
-		// Check current platform
-		if (!Platform.isDesktopApp) {
-			throw new Error("Agent Client is only available on desktop");
-		}
-
 		// Set up environment variables
-		// Desktop-only: Node.js process environment for terminal operations
 		let env: NodeJS.ProcessEnv = { ...process.env };
 
 		// On Windows (non-WSL mode), enhance PATH with full system/user PATH from registry.

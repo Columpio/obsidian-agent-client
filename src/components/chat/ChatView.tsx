@@ -1,4 +1,4 @@
-import { ItemView, WorkspaceLeaf, Platform, Notice, Menu } from "obsidian";
+import { ItemView, WorkspaceLeaf, Notice, Menu } from "obsidian";
 import type {
 	IChatViewContainer,
 	ChatViewType,
@@ -45,13 +45,6 @@ function ChatComponent({
 	view: ChatView;
 	viewId: string;
 }) {
-	// ============================================================
-	// Platform Check
-	// ============================================================
-	if (!Platform.isDesktopApp) {
-		throw new Error("Agent Client is only available on desktop");
-	}
-
 	// ============================================================
 	// Agent ID State (synced with Obsidian view state)
 	// Must be defined before useChatController to pass as initialAgentId
