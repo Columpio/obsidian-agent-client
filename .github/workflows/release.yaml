@@ -2,8 +2,8 @@ name: Release Obsidian plugin
 
 on:
     push:
-        tags:
-            - "*"
+        branches:
+            - master
 
 jobs:
     build:
@@ -27,7 +27,7 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
-                  tag="${GITHUB_REF#refs/tags/}"
+                  tag="${GITHUB_SHA}"
 
                   gh release create "$tag" \
                     --title="$tag" \
