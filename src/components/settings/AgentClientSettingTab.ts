@@ -46,7 +46,7 @@ export class AgentClientSettingTab extends PluginSettingTab {
 		});
 		docContainer.createSpan({ text: "Need help? Check out the " });
 		docContainer.createEl("a", {
-			text: "documentation",
+			text: "Documentation",
 			href: "https://rait-09.github.io/obsidian-agent-client/",
 			attr: { target: "_blank" },
 		});
@@ -408,7 +408,7 @@ export class AgentClientSettingTab extends PluginSettingTab {
 		new Setting(containerEl)
 			.setName("Auto-allow permissions")
 			.setDesc(
-				"Automatically allow all permission requests from agents. ⚠️ Use with caution - this gives agents full access to your system.",
+				"Automatically allow all permission requests from agents. Use with caution. This gives agents full access to your system.",
 			)
 			.addToggle((toggle) =>
 				toggle
@@ -425,13 +425,15 @@ export class AgentClientSettingTab extends PluginSettingTab {
 
 		if (Platform.isWin) {
 			new Setting(containerEl)
-				.setName("Windows Subsystem for Linux")
+				.setName("Windows subsystem for Linux")
 				.setHeading();
 
 			new Setting(containerEl)
-				.setName("Enable WSL mode")
+				// eslint-disable-next-line obsidianmd/ui/sentence-case
+				.setName("Enable Wsl mode")
 				.setDesc(
-					"Run agents inside Windows Subsystem for Linux. Recommended for agents like Codex that don't work well in native Windows environments.",
+					// eslint-disable-next-line obsidianmd/ui/sentence-case
+					"Run agents inside Windows subsystem for Linux. Recommended for agents like Codex that don't work well in native Windows environments.",
 				)
 				.addToggle((toggle) =>
 					toggle
@@ -445,9 +447,11 @@ export class AgentClientSettingTab extends PluginSettingTab {
 
 			if (this.plugin.settings.windowsWslMode) {
 				new Setting(containerEl)
-					.setName("WSL distribution")
+					// eslint-disable-next-line obsidianmd/ui/sentence-case
+					.setName("WSL Distribution")
 					.setDesc(
-						"Specify WSL distribution name (leave empty for default). Example: Ubuntu, Debian",
+						// eslint-disable-next-line obsidianmd/ui/sentence-case
+							"Specify Wsl distribution name (leave empty for default). Example: Ubuntu, Debian.",
 					)
 					.addText((text) =>
 						text
@@ -490,7 +494,7 @@ export class AgentClientSettingTab extends PluginSettingTab {
 			.setDesc("Folder where chat exports will be saved")
 			.addText((text) =>
 				text
-					.setPlaceholder("Agent Client")
+					.setPlaceholder("Agent client")
 					.setValue(this.plugin.settings.exportSettings.defaultFolder)
 					.onChange(async (value) => {
 						this.plugin.settings.exportSettings.defaultFolder =
@@ -524,7 +528,7 @@ export class AgentClientSettingTab extends PluginSettingTab {
 			)
 			.addText((text) =>
 				text
-					.setPlaceholder("agent-client")
+					.setPlaceholder("Agent-client")
 					.setValue(
 						this.plugin.settings.exportSettings.frontmatterTag,
 					)
@@ -537,7 +541,7 @@ export class AgentClientSettingTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName("Include images")
-			.setDesc("Include images in exported markdown files")
+			.setDesc("Include images in exported Markdown files")
 			.addToggle((toggle) =>
 				toggle
 					.setValue(this.plugin.settings.exportSettings.includeImages)
@@ -562,7 +566,7 @@ export class AgentClientSettingTab extends PluginSettingTab {
 						.addOption("custom", "Save to custom folder")
 						.addOption(
 							"base64",
-							"Embed as Base64 (not recommended)",
+							"Embed as base64 (not recommended)",
 						)
 						.setValue(
 							this.plugin.settings.exportSettings.imageLocation,
@@ -585,7 +589,7 @@ export class AgentClientSettingTab extends PluginSettingTab {
 					)
 					.addText((text) =>
 						text
-							.setPlaceholder("Agent Client")
+							.setPlaceholder("Agent client")
 							.setValue(
 								this.plugin.settings.exportSettings
 									.imageCustomFolder,
@@ -787,10 +791,12 @@ export class AgentClientSettingTab extends PluginSettingTab {
 		new Setting(sectionEl)
 			.setName("API key")
 			.setDesc(
-				"Gemini API key. Required if not logging in with a Google account. (Stored as plain text)",
+				// eslint-disable-next-line obsidianmd/ui/sentence-case
+				"Gemini api key. Required if not logging in with a Google account. (Stored as plain text.)",
 			)
 			.addText((text) => {
-				text.setPlaceholder("Enter your Gemini API key")
+				// eslint-disable-next-line obsidianmd/ui/sentence-case
+					text.setPlaceholder("Enter your Gemini api key")
 					.setValue(gemini.apiKey)
 					.onChange(async (value) => {
 						this.plugin.settings.gemini.apiKey = value.trim();
@@ -802,7 +808,8 @@ export class AgentClientSettingTab extends PluginSettingTab {
 		new Setting(sectionEl)
 			.setName("Path")
 			.setDesc(
-				'Absolute path to the Gemini CLI. On macOS/Linux, use "which gemini", and on Windows, use "where gemini" to find it.',
+				// eslint-disable-next-line obsidianmd/ui/sentence-case
+				'Absolute path to the Gemini cli. On macOS/Linux, use "which gemini", and on Windows, use "where gemini" to find it.',
 			)
 			.addText((text) => {
 				text.setPlaceholder("Absolute path to gemini")
@@ -816,7 +823,8 @@ export class AgentClientSettingTab extends PluginSettingTab {
 		new Setting(sectionEl)
 			.setName("Arguments")
 			.setDesc(
-				'Enter one argument per line. Leave empty to run without arguments.(Currently, the Gemini CLI requires the "--experimental-acp" option.)',
+				// eslint-disable-next-line obsidianmd/ui/sentence-case
+				'Enter one argument per line. Leave empty to run without arguments. (Currently, the Gemini cli requires the "--experimental-acp" option.)',
 			)
 			.addTextArea((text) => {
 				text.setPlaceholder("")
@@ -832,10 +840,12 @@ export class AgentClientSettingTab extends PluginSettingTab {
 		new Setting(sectionEl)
 			.setName("Environment variables")
 			.setDesc(
-				"Enter KEY=VALUE pairs, one per line. Required to authenticate with Vertex AI. GEMINI_API_KEY is derived from the field above.(Stored as plain text)",
+				// eslint-disable-next-line obsidianmd/ui/sentence-case
+				"Enter key=value pairs, one per line. Required to authenticate with Vertex Ai. gemini_api_key is derived from the field above. (Stored as plain text.)",
 			)
 			.addTextArea((text) => {
-				text.setPlaceholder("GOOGLE_CLOUD_PROJECT=...")
+				// eslint-disable-next-line obsidianmd/ui/sentence-case
+					text.setPlaceholder("google_cloud_project=...")
 					.setValue(this.formatEnv(gemini.env))
 					.onChange(async (value) => {
 						this.plugin.settings.gemini.env = this.parseEnv(value);
@@ -855,10 +865,12 @@ export class AgentClientSettingTab extends PluginSettingTab {
 		new Setting(sectionEl)
 			.setName("API key")
 			.setDesc(
-				"Anthropic API key. Required if not logging in with an Anthropic account. (Stored as plain text)",
+				// eslint-disable-next-line obsidianmd/ui/sentence-case
+				"Anthropic api key. Required if not logging in with an Anthropic account. (Stored as plain text.)",
 			)
 			.addText((text) => {
-				text.setPlaceholder("Enter your Anthropic API key")
+				// eslint-disable-next-line obsidianmd/ui/sentence-case
+					text.setPlaceholder("Enter your Anthropic api key")
 					.setValue(claude.apiKey)
 					.onChange(async (value) => {
 						this.plugin.settings.claude.apiKey = value.trim();
@@ -900,7 +912,8 @@ export class AgentClientSettingTab extends PluginSettingTab {
 		new Setting(sectionEl)
 			.setName("Environment variables")
 			.setDesc(
-				"Enter KEY=VALUE pairs, one per line. ANTHROPIC_API_KEY is derived from the field above.",
+				// eslint-disable-next-line obsidianmd/ui/sentence-case
+				"Enter key=value pairs, one per line. anthropic_api_key is derived from the field above.",
 			)
 			.addTextArea((text) => {
 				text.setPlaceholder("")
@@ -923,10 +936,12 @@ export class AgentClientSettingTab extends PluginSettingTab {
 		new Setting(sectionEl)
 			.setName("API key")
 			.setDesc(
-				"OpenAI API key. Required if not logging in with an OpenAI account. (Stored as plain text)",
+				// eslint-disable-next-line obsidianmd/ui/sentence-case
+				"OpenAi api key. Required if not logging in with an OpenAi account. (Stored as plain text.)",
 			)
 			.addText((text) => {
-				text.setPlaceholder("Enter your OpenAI API key")
+				// eslint-disable-next-line obsidianmd/ui/sentence-case
+					text.setPlaceholder("Enter your OpenAi api key")
 					.setValue(codex.apiKey)
 					.onChange(async (value) => {
 						this.plugin.settings.codex.apiKey = value.trim();
@@ -967,7 +982,8 @@ export class AgentClientSettingTab extends PluginSettingTab {
 		new Setting(sectionEl)
 			.setName("Environment variables")
 			.setDesc(
-				"Enter KEY=VALUE pairs, one per line. OPENAI_API_KEY is derived from the field above.",
+				// eslint-disable-next-line obsidianmd/ui/sentence-case
+				"Enter key=value pairs, one per line. openai_api_key is derived from the field above.",
 			)
 			.addTextArea((text) => {
 				text.setPlaceholder("")
@@ -1026,7 +1042,7 @@ export class AgentClientSettingTab extends PluginSettingTab {
 			.setName("Agent ID")
 			.setDesc("Unique identifier used to reference this agent.")
 			.addText((text) => {
-				text.setPlaceholder("custom-agent")
+				text.setPlaceholder("Custom-agent")
 					.setValue(agent.id)
 					.onChange(async (value) => {
 						const previousId =
@@ -1110,10 +1126,12 @@ export class AgentClientSettingTab extends PluginSettingTab {
 		new Setting(blockEl)
 			.setName("Environment variables")
 			.setDesc(
-				"Enter KEY=VALUE pairs, one per line. (Stored as plain text)",
+				// eslint-disable-next-line obsidianmd/ui/sentence-case
+				"Enter key=value pairs, one per line. (Stored as plain text.)",
 			)
 			.addTextArea((text) => {
-				text.setPlaceholder("TOKEN=...")
+				// eslint-disable-next-line obsidianmd/ui/sentence-case
+					text.setPlaceholder("example=value")
 					.setValue(this.formatEnv(agent.env))
 					.onChange(async (value) => {
 						this.plugin.settings.customAgents[index].env =

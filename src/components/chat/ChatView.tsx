@@ -442,7 +442,7 @@ function ChatComponent({
 					const success = await permission.approveActivePermission();
 					if (!success) {
 						new Notice(
-							"[Agent Client] No active permission request",
+							"No active permission request",
 						);
 					}
 				})();
@@ -467,7 +467,7 @@ function ChatComponent({
 					const success = await permission.rejectActivePermission();
 					if (!success) {
 						new Notice(
-							"[Agent Client] No active permission request",
+							"No active permission request",
 						);
 					}
 				})();

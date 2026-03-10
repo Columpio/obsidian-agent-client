@@ -781,7 +781,7 @@ export default class AgentClientPlugin extends Plugin {
 	private broadcastPrompt(): void {
 		const allViews = this.viewRegistry.getAll();
 		if (allViews.length === 0) {
-			new Notice("[Agent Client] No chat views open");
+			new Notice("No chat views open");
 			return;
 		}
 
@@ -792,14 +792,14 @@ export default class AgentClientPlugin extends Plugin {
 			!inputState ||
 			(inputState.text.trim() === "" && inputState.files.length === 0)
 		) {
-			new Notice("[Agent Client] No prompt to broadcast");
+			new Notice("No prompt to broadcast");
 			return;
 		}
 
 		const focusedId = this.viewRegistry.getFocusedId();
 		const targetViews = allViews.filter((v) => v.viewId !== focusedId);
 		if (targetViews.length === 0) {
-			new Notice("[Agent Client] No other chat views to broadcast to");
+			new Notice("No other chat views to broadcast to");
 			return;
 		}
 
@@ -814,13 +814,13 @@ export default class AgentClientPlugin extends Plugin {
 	private async broadcastSend(): Promise<void> {
 		const allViews = this.viewRegistry.getAll();
 		if (allViews.length === 0) {
-			new Notice("[Agent Client] No chat views open");
+			new Notice("No chat views open");
 			return;
 		}
 
 		const sendableViews = allViews.filter((v) => v.canSend());
 		if (sendableViews.length === 0) {
-			new Notice("[Agent Client] No views ready to send");
+			new Notice("No views ready to send");
 			return;
 		}
 
@@ -833,12 +833,12 @@ export default class AgentClientPlugin extends Plugin {
 	private async broadcastCancel(): Promise<void> {
 		const allViews = this.viewRegistry.getAll();
 		if (allViews.length === 0) {
-			new Notice("[Agent Client] No chat views open");
+			new Notice("No chat views open");
 			return;
 		}
 
 		await Promise.allSettled(allViews.map((v) => v.cancelOperation()));
-		new Notice("[Agent Client] Cancel broadcast to all views");
+		new Notice("Canceled broadcast to all views");
 	}
 
 	async loadSettings() {
