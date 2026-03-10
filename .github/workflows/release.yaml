@@ -27,9 +27,18 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
-                  tag="${GITHUB_SHA}"
+                  latest_tag="$(gh release list --limit 100 --json tagName --jq '.[].tagName' | rg '^v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n 1)"
+
+                  if [ -z "$latest_tag" ]; then
+                    tag="v0.0.1"
+                  else
+                    version="${latest_tag#v}"
+                    IFS='.' read -r major minor patch <<< "$version"
+                    next_patch=$((patch + 1))
+                    tag="v${major}.${minor}.${next_patch}"
+                  fi
 
                   gh release create "$tag" \
-                    --title="$tag" \
-                    --draft \
+                    --title="Agent Client ${tag}" \
+                    --notes="Automated release for ${tag}" \
                     main.js manifest.json styles.css
